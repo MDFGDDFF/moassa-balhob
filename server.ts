@@ -225,8 +225,7 @@ function hashPassword(password: string): string {
 // Pre-configured admin passwords (for login verification)
 const adminUsers = [
   { username: 'majed222', passwordHash: hashPassword('24682468'), role: 'Admin' },
-  { username: 'admin', passwordHash: hashPassword('admin'), role: 'Admin' },
-  { username: 'editor', passwordHash: hashPassword('editor'), role: 'Editor' }
+ 
 ];
 
 // Synchronous JSON file persistence

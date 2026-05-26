@@ -1,0 +1,194 @@
+{
+  "volunteers": [
+    {
+      "id": "900213456",
+      "fullName": "يوسف أحمد محمد الكرد",
+      "nationalId": "900213456",
+      "birthYear": 1998,
+      "phone": "+970599123456",
+      "address": "وسط المخيم، بجوار المسجد الكبير",
+      "gender": "male",
+      "joinDate": "2024-01-15",
+      "image": "",
+      "status": "active",
+      "story": "بدأ يوسف العمل التطوعي كدعم نفسي في مراكز الإيواء، حيث ينظم ألعاباً ترفيهية للأطفال للتقليل من آثار الصدمات والحروب.",
+      "regionId": "maghazi"
+    },
+    {
+      "id": "801234789",
+      "fullName": "آية محمود حسن رضوان",
+      "nationalId": "801234789",
+      "birthYear": 2000,
+      "phone": "+970592987654",
+      "address": "شارع صلاح الدين، بالقرب من دوار البريج",
+      "gender": "female",
+      "joinDate": "2024-02-10",
+      "image": "",
+      "status": "active",
+      "story": "مدرسة لغة عربية تطوعت لتعليم الأطفال القراءة والكتابة في خيم التعليم ومحو الأمية بالمخيمات.",
+      "regionId": "bureij"
+    },
+    {
+      "id": "402345123",
+      "fullName": "أنس جلال ابراهيم البحيصي",
+      "nationalId": "402345123",
+      "birthYear": 1996,
+      "phone": "+970595333222",
+      "address": "منطقة الميناء، بجوار مستشفى شهداء الأقصى",
+      "gender": "male",
+      "joinDate": "2023-11-01",
+      "image": "",
+      "status": "active",
+      "story": "متطوع صحي متميز، يدير مبادرات توزيع المياه الصالحة للشرب والإسعافات الأولية وتأهيل الخيام في دير البلح.",
+      "regionId": "deir_balah"
+    },
+    {
+      "id": "905667112",
+      "fullName": "هبة سليم كمال صيدم",
+      "nationalId": "905667112",
+      "birthYear": 2001,
+      "phone": "+970597111000",
+      "address": "غرب الزوايدة، قرب شاطئ البحر",
+      "gender": "female",
+      "joinDate": "2024-03-20",
+      "image": "",
+      "status": "active",
+      "story": "تخصصت هبة في المساعدات المجتمعية والدعم الغذائي للأسر المنكوبة والنازحة وعقد حلقات تفريغ نفسي للأمهات.",
+      "regionId": "zawayda"
+    },
+    {
+      "id": "911554115",
+      "fullName": "مروان خالد صالح صالحة",
+      "nationalId": "911554115",
+      "birthYear": 1997,
+      "phone": "+970598654321",
+      "address": "مخيم النصيرات، بلوك C",
+      "gender": "male",
+      "joinDate": "2024-04-05",
+      "image": "",
+      "status": "inactive",
+      "story": "مهرج ومعد أنشطة مسرحية، يدخل البسمة على شفاه الأطفال المرضى والجرحى بتمثيل مسرح دمى مجاني.",
+      "regionId": "nuseirat"
+    }
+  ],
+  "activities": [
+    {
+      "id": "act_1",
+      "title": "مهرجان بسمة طفل الترفيهي لإدخال الفرحة لقلوب الأطفال والنازحين",
+      "description": "يوم تفريغي مفتوح للأطفال النازحين تضمن عروض مهرجين، رسم على الوجوه، ألعاب تلي ماتش هادفة وتوزيع هدايا بسيطة لرفع معنوياتهم.",
+      "type": "recreational",
+      "location": "ساحة مدرسة المغازي الإعدادية للبنين",
+      "date": "2026-05-12",
+      "childrenCount": 150,
+      "volunteersCount": 8,
+      "images": []
+    },
+    {
+      "id": "act_2",
+      "title": "مبادرة خيم التعليم والإرشاد المدرسي والتعليم البديل لمحو الأمية",
+      "description": "تأسيس حلقات تعليمية بديلة لمتابعة أساسيات القراءة، الرياضيات والعلوم للأطفال الذين انقطعوا عن مدارسهم بسبب الظروف الراهنة.",
+      "type": "educational",
+      "location": "مخيم البريج، خيمة بالحب نعطي ونداوي التعليمية",
+      "date": "2026-05-18",
+      "childrenCount": 85,
+      "volunteersCount": 6,
+      "images": []
+    },
+    {
+      "id": "act_3",
+      "title": "حلقات التفريغ والدعم النفسي للأطفال عبر فن الرسم والصلصال",
+      "description": "نشاط دعم نفسي تخصصي بمساعدة أخصائيين لتوجيه طاقات الأطفال، وتعبيراتهم الفنية للتعبير عن مخاوفهم ورسم مستقبلهم بالأمل.",
+      "type": "psycho_social",
+      "location": "مركز الزوايدة المجتمعي",
+      "date": "2026-05-24",
+      "childrenCount": 110,
+      "volunteersCount": 5,
+      "images": []
+    },
+    {
+      "id": "act_4",
+      "title": "حملة فحص وقائي وتوعية صحية للأطفال ضد الأمراض الجلدية والمعوية",
+      "description": "مبادرة طبية تضمنت الكشف والتشخيص السريع للأطفال وتوعيتهم وتوزيع حقائب نظافة صحية ووقائية شخصية.",
+      "type": "health",
+      "location": "نقطة دير البلح الطبية المتنقلة",
+      "date": "2026-05-25",
+      "childrenCount": 220,
+      "volunteersCount": 12,
+      "images": []
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg_1",
+      "name": "أحمد علي جابر",
+      "email": "ahmad@example.com",
+      "phone": "+970599111333",
+      "message": "السلام عليكم ورحمة الله وبركاته، نود تقديم تبرعات عينية من ملابس وألعاب للأطفال، كيف يمكننا التنسيق معكم؟ وجزاكم الله خيراً.",
+      "status": "new",
+      "createdAt": "2026-05-25T14:30:00Z"
+    },
+    {
+      "id": "msg_2",
+      "name": "أم محمد الأسطل",
+      "email": "momsgaza@example.com",
+      "phone": "+970592555555",
+      "message": "ابني لديه صدمة خوف ويتبول لا إرادي بسبب القصف، هل لديكم جلسات فردية متخصصة في دير البلح لمساعدته؟ بارك الله فيكم.",
+      "status": "replied",
+      "replyContent": "أهلاً بك يا أم محمد، نعم متواجدون بنقطة دير البلح يومي الاثنين والخميس ولديك الأخصائي أنس البحيصي متاح للمساعدة الفردية، تواصلنا معك عبر الهاتف وسنقوم بتسجيل زيارتك معنا لتقديم الدعم التام للطفل.",
+      "createdAt": "2026-05-24T09:15:00Z"
+    }
+  ],
+  "excelLogs": [
+    {
+      "id": "log_1",
+      "fileName": "volunteers_seed_import.csv",
+      "type": "import",
+      "regionId": "all",
+      "recordsCount": 5,
+      "createdAt": "2026-05-26T07:00:00Z",
+      "operator": "admin"
+    }
+  ],
+  "settings": {
+    "addressAr": "فلسطين، قطاع غزة، المحافظة الوسطى، دير البلح، شارع شهداء الأقصى",
+    "addressEn": "Palestine, Gaza Strip, Central Governorate, Deir al-Balah, Shuhada al-Aqsa Street",
+    "phone": "+970 599 123 456",
+    "email": "gaza.withlove@gmail.com",
+    "welcomeTitleAr": "مرحباً بكم في فريق بالحب نعطي ونداوِي",
+    "welcomeTitleEn": "Welcome to 'With Love, We Give & Heal'",
+    "welcomeDescAr": "مجموعة تطوعية إنسانية مستقلة، تأسست من قلب قطاع غزة لتقديم الدعم النفسي والتعليمي والصحي والترفيهي للأطفال المتأثرين بالحروب والأزمات. نحن نؤمن أن طفولة غزة تستحق مستقبلاً خالياً من الخوف وممتلئاً بالأمل.",
+    "welcomeDescEn": "An independent humanitarian voluntary group, founded in the heart of the Gaza Strip, to provide psycho-social, educational, healthcare, and recreational relief to children impacted by conflict and crises. We firmly believe that the children of Gaza deserve a future free of fear, filled with hope.",
+    "visionAr": "أن نكون الشمعة المضيئة والبلسم المداوي لكل طفل نازح أو جريح في غزة، وبناء منظومة مساندة مجتمعية رائدة تقود غد الأطفال نحو الأمان والابتكار والنجاح.",
+    "visionEn": "To be the guiding light and the healing balm for every displaced or injured child in Gaza, building an leading community support ecosystem that points their future toward safety, innovation, and achievements.",
+    "missionAr": "تقديم برامج مميزة وشاملة في الدعم النفسي الفردي والجماعي، والتعليم البديل، والرعاية الطبية الوقائية والمهرجانات الترفيهية للأطفال، عن طريق تأهيل كادر متميز من المتطوعين الشجعان في كافة مناطق القطاع.",
+    "missionEn": "To deliver distinct, holistic programs in individual and group psycho-social support, non-formal alternative education, preventive medical care, and entertainment events for kids, by training an elite team of motivated local volunteers in all refugee camps.",
+    "valuesAr": "الحب الصادق، العطاء بلا شروط، الشفافية المطلقة، الأمان النفسي، والعمل بروح الفريق الواحد الصامد.",
+    "valuesEn": "Sincere love, unconditional giving, absolute transparency, psychological safety, and a unified, historical teamwork spirit.",
+    "partners": [
+      {
+        "nameAr": "الأونروا - غزة",
+        "nameEn": "UNRWA Gaza",
+        "typeAr": "رعاية إيوائية",
+        "typeEn": "Shelter Support"
+      },
+      {
+        "nameAr": "الهلال الأحمر الفلسطيني",
+        "nameEn": "PRCS Palestine",
+        "typeAr": "إسناد مسعف وطبي",
+        "typeEn": "Emergency & Medical"
+      },
+      {
+        "nameAr": "اليونيسف للطفولة",
+        "nameEn": "UNICEF Kids",
+        "typeAr": "برامج دعم متكاملة",
+        "typeEn": "Childhood programs"
+      },
+      {
+        "nameAr": "مجموعة أوتشا الإنسانية",
+        "nameEn": "OCHA Humanitarian",
+        "typeAr": "تنسيق ميداني لوجستي",
+        "typeEn": "Field coordination"
+      }
+    ]
+  }
+}
