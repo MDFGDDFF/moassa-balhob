@@ -1,0 +1,6 @@
+{
+  "name": "بالحب نعطي ونداوِي",
+  "description": "منصة متكاملة لإدارة أنشطة الأطفال ودعمهم في قطاع غزة، وإدارة المتطوعين، وتوزيع المناطق، وسجلات الأنشطة والفعاليات مع إمكانية استيراد وتصدير البيانات.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
