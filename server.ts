@@ -311,6 +311,8 @@ function loadDb() {
 function saveDb() {
   try {
     fs.writeFileSync(DB_FILE, JSON.stringify(dbCache, null, 2), 'utf-8');
+    loadDb ();
+    console.log('Database updated and reloaded successfully');
   } catch (error) {
     console.error('Error saving db to disk', error);
   }
