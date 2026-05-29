@@ -1,0 +1,130 @@
+{
+  "volunteers": [
+   
+    {
+      "fullName": "ماجد محمد محمود البكري",
+      "nationalId": "405901117",
+      "birthYear": 2000,
+      "phone": "0599467717",
+      "address": "دير البلح، وسط المخيم",
+      "gender": "male",
+      "status": "active",
+      "story": "",
+      "regionId": "deir_balah",
+      "image": "",
+      "id": "405901117"
+    },
+    {
+      "fullName": "شهد انور محمد ابو مصبح",
+      "nationalId": "422718825",
+      "birthYear": 2005,
+      "phone": "0597596735",
+      "address": "ميناء القرارة الشمالية اول شارع الطينه ",
+      "gender": "female",
+      "status": "active",
+      "story": "علاقات عامة وتنسيق",
+      "regionId": "deir_balah",
+      "image": "",
+      "id": "422718825"
+    },
+    {
+      "fullName": "نور أمجد حماد ابو ستة ",
+      "nationalId": "409093150",
+      "birthYear": 2003,
+      "phone": "0594069186",
+      "address": "دير البلح.الزوايدة",
+      "gender": "female",
+      "status": "active",
+      "story": "",
+      "regionId": "zawayda",
+      "image": "",
+      "id": "409093150"
+    },
+    {
+      "fullName": "وسام رامى خضر شلتوت ",
+      "nationalId": "408386647",
+      "birthYear": 2002,
+      "phone": "0598144318",
+      "address": "دير البلح، الزوايدة",
+      "gender": "male",
+      "status": "active",
+      "story": "",
+      "regionId": "zawayda",
+      "image": "",
+      "id": "408386647"
+    },
+    {
+      "fullName": "أفنان حازم محمد الدحدوح ",
+      "nationalId": "409779428",
+      "birthYear": 2004,
+      "phone": "0599864292",
+      "address": "غزة ، تل الهوا ،بجوار الكلية التطبيقية للبنات ، شارع 8",
+      "gender": "female",
+      "status": "active",
+      "story": "",
+      "regionId": "nuseirat",
+      "image": "",
+      "id": "409779428"
+    }
+  ],
+  "activities": [
+    {
+      "id": "act_1",
+      "title": "مهرجان بسمة طفل الترفيهي لإدخال الفرحة لقلوب الأطفال والنازحين",
+      "description": "يوم تفريغي مفتوح للأطفال النازحين تضمن عروض مهرجين، رسم على الوجوه، ألعاب تلي ماتش هادفة وتوزيع هدايا بسيطة لرفع معنوياتهم.",
+      "type": "recreational",
+      "location": "ساحة مدرسة المغازي الإعدادية للبنين",
+      "date": "2026-05-12",
+      "childrenCount": 150,
+      "volunteersCount": 8,
+      "images": []
+    }
+  ],
+  "messages": [],
+  "excelLogs": [],
+  "settings": {
+    "addressAr": "فلسطين، قطاع غزة، المحافظة الوسطى، دير البلح، شارع شهداء الأقصى",
+    "addressEn": "Palestine, Gaza Strip, Central Governorate, Deir al-Balah, Shuhada al-Aqsa Street",
+    "phone": "+970 599 123 456",
+    "email": "gaza.withlove@gmail.com",
+    "welcomeTitleAr": "مرحباً بكم في فريق بالحب نعطي ونداوِي",
+    "welcomeTitleEn": "Welcome to 'With Love, We Give & Heal'",
+    "regions": [
+      {
+        "id": "gaza",
+        "nameAr": "غزة",
+        "nameEn": "Gaza"
+      },
+      {
+        "id": "khanyounis",
+        "nameAr": "خانيونس",
+        "nameEn": "Khan Younis"
+      },
+      {
+        "id": "maghazi",
+        "nameAr": "المغازي",
+        "nameEn": "Al-Maghazi"
+      },
+      {
+        "id": "bureij",
+        "nameAr": "البريج",
+        "nameEn": "Al-Bureij"
+      },
+      {
+        "id": "deir_balah",
+        "nameAr": "دير البلح",
+        "nameEn": "Deir al-Balah"
+      },
+      {
+        "id": "zawayda",
+        "nameAr": "الزوايدة",
+        "nameEn": "Al-Zawayda"
+      },
+      {
+        "id": "nuseirat",
+        "nameAr": "النصيرات",
+        "nameEn": "Al-Nuseirat"
+      }
+    ]
+  }
+}
