@@ -2,69 +2,68 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { createServer as createViteServer } from 'vite';
-import { RegionId, Volunteer, Activity, ContactMessage, ExcelLog, AppStats } from './src/types';
+import { Volunteer, Activity, ContactMessage, ExcelLog } from './src/types';
 
 dotenv.config();
 
 const app = express();
 const PORT = 3000;
 
+const JWT_SECRET = 'super-secret-key-change-this';
+
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 const DB_FILE = path.join(process.cwd(), 'db.json');
 
-/* ---------------- INITIAL DATA ---------------- */
+/* ---------------- DB ---------------- */
 
-const initialVolunteers: Volunteer[] = [
-  {
-    id: '900213456',
-    fullName: 'يوسف أحمد محمد الكرد',
-    nationalId: '900213456',
-    birthYear: 1998,
-    phone: '+970599123456',
-    address: 'وسط المخيم، بجوار المسجد الكبير',
-    gender: 'male',
-    joinDate: '2024-01-15',
-    image: '',
-    status: 'active',
-    story: '',
-    regionId: 'maghazi'
-  }
-];
-
-const initialActivities: Activity[] = [];
-const initialMessages: ContactMessage[] = [];
-const initialLogs: ExcelLog[] = [];
+interface User {
+  id: string;
+  username: string;
+  password: string;
+  role: 'admin' | 'user';
+  createdAt: string;
+}
 
 interface DbSchema {
   volunteers: Volunteer[];
   activities: Activity[];
   messages: ContactMessage[];
   excelLogs: ExcelLog[];
-  settings?: any;
+  users: User[];
 }
 
 let dbCache: DbSchema = {
   volunteers: [],
   activities: [],
   messages: [],
-  excelLogs: []
+  excelLogs: [],
+  users: []
 };
 
-/* ---------------- PASSWORD ---------------- */
+/* ---------------- INIT DATA ---------------- */
 
-function hashPassword(password: string): string {
+const initialUsers: User[] = [
+  {
+    id: '1',
+    username: 'majed222',
+    password: hashPassword('24682468'),
+    role: 'admin',
+    createdAt: new Date().toISOString()
+  }
+];
+
+/* ---------------- HASH ---------------- */
+
+function hashPassword(password: string) {
   return crypto.createHash('sha256').update(password).digest('hex');
 }
 
-const adminUsers = [
-  { username: 'majed222', passwordHash: hashPassword('24682468'), role: 'Admin' },
-];
-
-/* ---------------- DB LOAD / SAVE ---------------- */
+/* ---------------- DB ---------------- */
 
 function loadDb() {
   try {
@@ -72,150 +71,164 @@ function loadDb() {
       dbCache = JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
     } else {
       dbCache = {
-        volunteers: initialVolunteers,
-        activities: initialActivities,
-        messages: initialMessages,
-        excelLogs: initialLogs
+        volunteers: [],
+        activities: [],
+        messages: [],
+        excelLogs: [],
+        users: initialUsers
       };
       saveDb();
     }
+
+    if (!dbCache.users) dbCache.users = initialUsers;
+
   } catch (e) {
-    console.log('DB load error fallback');
+    console.log('DB error');
   }
 }
 
-/* ✅ FIXED saveDb (IMPORTANT) */
+/* FIX SAVE */
 function saveDb() {
-  try {
-    fs.writeFileSync(DB_FILE, JSON.stringify(dbCache, null, 2), 'utf-8');
-    console.log('DB saved successfully');
-  } catch (error) {
-    console.error('DB save error', error);
-  }
+  fs.writeFileSync(DB_FILE, JSON.stringify(dbCache, null, 2));
 }
 
 loadDb();
 
-/* ---------------- AUTH ---------------- */
+/* ---------------- JWT ---------------- */
 
-function generateToken(username: string, role: string): string {
-  const data = `${username}:${role}:${Date.now()}`;
-  const hmac = crypto.createHmac('sha256', 'secret').update(data).digest('hex');
-  return Buffer.from(`${username}:${role}:${hmac}`).toString('base64');
+function createToken(user: User) {
+  return jwt.sign(
+    { id: user.id, username: user.username, role: user.role },
+    JWT_SECRET,
+    { expiresIn: '7d' }
+  );
 }
 
-function verifyAuth(req: any, res: any, next: any) {
-  const auth = req.headers.authorization;
-  if (!auth) return res.status(401).json({ error: 'Unauthorized' });
+function auth(req: any, res: any, next: any) {
+  const header = req.headers.authorization;
+
+  if (!header) return res.status(401).json({ error: 'No token' });
 
   try {
-    const decoded = Buffer.from(auth.replace('Bearer ', ''), 'base64').toString();
-    const [username, role] = decoded.split(':');
-    req.user = { username, role };
+    const token = header.split(' ')[1];
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
     next();
   } catch {
     return res.status(401).json({ error: 'Invalid token' });
   }
 }
 
-/* ---------------- VOLUNTEERS ---------------- */
+/* ---------------- AUTH API ---------------- */
 
-app.get('/api/volunteers', (req, res) => {
-  res.json(dbCache.volunteers);
-});
+/* REGISTER */
+app.post('/auth/register', (req, res) => {
+  const { username, password } = req.body;
 
-/* ✅ FIX: normalize ID */
-app.post('/api/volunteers', verifyAuth, (req, res) => {
-  const { fullName, nationalId } = req.body;
-
-  if (!fullName || !nationalId) {
+  if (!username || !password) {
     return res.status(400).json({ error: 'Missing fields' });
   }
 
-  const cleanId = String(nationalId).trim();
-
-  const exists = dbCache.volunteers.some(
-    v => String(v.nationalId).trim() === cleanId
-  );
-
+  const exists = dbCache.users.find(u => u.username === username);
   if (exists) {
-    return res.status(400).json({ error: 'ID already exists' });
+    return res.status(400).json({ error: 'User exists' });
   }
 
-  const newVolunteer: Volunteer = {
-    id: cleanId,
+  const user: User = {
+    id: Date.now().toString(),
+    username,
+    password: hashPassword(password),
+    role: 'user',
+    createdAt: new Date().toISOString()
+  };
+
+  dbCache.users.push(user);
+  saveDb();
+
+  res.json({ message: 'Registered successfully' });
+});
+
+/* LOGIN */
+app.post('/auth/login', (req, res) => {
+  const { username, password } = req.body;
+
+  const user = dbCache.users.find(u => u.username === username);
+
+  if (!user) return res.status(404).json({ error: 'User not found' });
+
+  if (user.password !== hashPassword(password)) {
+    return res.status(401).json({ error: 'Wrong password' });
+  }
+
+  const token = createToken(user);
+
+  res.json({
+    token,
+    user: {
+      id: user.id,
+      username: user.username,
+      role: user.role
+    }
+  });
+});
+
+/* LOGOUT (frontend just deletes token) */
+app.post('/auth/logout', auth, (req, res) => {
+  res.json({ message: 'Logged out (delete token on client)' });
+});
+
+/* ---------------- USERS ADMIN ---------------- */
+
+app.get('/users', auth, (req: any, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+
+  res.json(dbCache.users);
+});
+
+app.delete('/users/:id', auth, (req: any, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+
+  dbCache.users = dbCache.users.filter(u => u.id !== req.params.id);
+  saveDb();
+
+  res.json({ message: 'Deleted' });
+});
+
+/* ---------------- VOLUNTEERS (secured example) ---------------- */
+
+app.post('/api/volunteers', auth, (req, res) => {
+  const { fullName, nationalId } = req.body;
+
+  const id = String(nationalId).trim();
+
+  const exists = dbCache.volunteers.find(v => v.nationalId === id);
+  if (exists) {
+    return res.status(400).json({ error: 'Exists' });
+  }
+
+  const newV = {
+    id,
     fullName,
-    nationalId: cleanId,
+    nationalId: id,
     birthYear: 2000,
     phone: '',
     address: '',
     gender: 'male',
-    joinDate: new Date().toISOString().split('T')[0],
+    joinDate: new Date().toISOString(),
     image: '',
     status: 'active',
     story: '',
     regionId: 'maghazi'
   };
 
-  dbCache.volunteers.push(newVolunteer);
+  dbCache.volunteers.push(newV);
   saveDb();
 
-  res.status(201).json(newVolunteer);
-});
-
-/* ✅ FIX DELETE */
-app.delete('/api/volunteers/:id', verifyAuth, (req, res) => {
-  const id = String(req.params.id).trim();
-
-  dbCache.volunteers = dbCache.volunteers.filter(
-    v => String(v.id).trim() !== id
-  );
-
-  saveDb();
-
-  res.json({ message: 'Deleted successfully' });
-});
-
-/* ---------------- UPDATE ---------------- */
-
-app.put('/api/volunteers/:id', verifyAuth, (req, res) => {
-  const id = String(req.params.id).trim();
-
-  const index = dbCache.volunteers.findIndex(
-    v => String(v.id).trim() === id
-  );
-
-  if (index === -1) {
-    return res.status(404).json({ error: 'Not found' });
-  }
-
-  const updated = {
-    ...dbCache.volunteers[index],
-    ...req.body
-  };
-
-  dbCache.volunteers[index] = updated;
-  saveDb();
-
-  res.json(updated);
-});
-
-/* ---------------- ACTIVITIES ---------------- */
-
-app.get('/api/activities', (req, res) => {
-  res.json(dbCache.activities);
-});
-
-app.post('/api/activities', verifyAuth, (req, res) => {
-  const act: Activity = {
-    id: `act_${Date.now()}`,
-    ...req.body
-  };
-
-  dbCache.activities.push(act);
-  saveDb();
-
-  res.json(act);
+  res.json(newV);
 });
 
 /* ---------------- START SERVER ---------------- */
@@ -237,7 +250,7 @@ async function start() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running http://localhost:${PORT}`);
   });
 }
 
