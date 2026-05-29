@@ -87,6 +87,11 @@ function loadDb() {
     if (fs.existsSync(DB_FILE)) {
       const data = fs.readFileSync(DB_FILE, 'utf-8');
       dbCache = JSON.parse(data);
+      
+      // سطر الإصلاح التلقائي: تأكد من وجود المناطق الجديدة داخل الإعدادات
+      if (dbCache.settings) {
+        dbCache.settings.regions = initialRegions;
+      }
     } else {
       dbCache = {
         volunteers: initialVolunteers,
@@ -105,14 +110,16 @@ function loadDb() {
         email: "gaza.withlove@gmail.com",
         welcomeTitleAr: "مرحباً بكم في فريق بالحب نعطي ونداوِي",
         welcomeTitleEn: "Welcome to 'With Love, We Give & Heal'",
-        // إضافة المناطق للإعدادات ليتمكن الـ Frontend من قراءتها
-        regions: initialRegions 
+        regions: initialRegions // تأكد أنها مضافة هنا أيضاً
       };
     }
+    // حفظ التعديلات الجديدة فوراً في الملف
+    saveDb();
   } catch (error) {
     console.error('Error loading db', error);
   }
 }
+
 
 function saveDb() {
   try {
