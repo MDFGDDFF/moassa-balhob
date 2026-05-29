@@ -1,4 +1,5 @@
-export type RegionId = 'maghazi' | 'bureij' | 'deir_balah' | 'zawayda' | 'nuseirat';
+// --- تحديث الـ RegionId ليشمل المناطق الجديدة ---
+export type RegionId = 'gaza' | 'khanyounis' | 'maghazi' | 'bureij' | 'deir_balah' | 'zawayda' | 'nuseirat';
 
 export interface Region {
   id: RegionId;
@@ -60,6 +61,7 @@ export interface AppStats {
   volunteersCount: number;
   activitiesCount: number;
   childrenCount: number;
+  // استخدام Record هنا سيجبرك على تغطية جميع المناطق السبعة في الإحصائيات
   byRegion: Record<RegionId, number>;
 }
 
@@ -87,4 +89,3 @@ export interface AppSettings {
   valuesEn?: string;
   partners?: Partner[];
 }
-

@@ -2,7 +2,7 @@
   "volunteers": [
     {
       "id": "422718825",
-      "fullName": "شهد انور محمد ابو مصبح",
+      "fullName": "يوسف أنور محمد أبو مصبح",
       "nationalId": "900213456",
       "birthYear": 1998,
       "phone": "+970599123456",
@@ -189,6 +189,15 @@
         "typeAr": "تنسيق ميداني لوجستي",
         "typeEn": "Field coordination"
       }
+    ],
+    "regions": [
+      { "id": "gaza", "nameAr": "غزة", "nameEn": "Gaza" },
+      { "id": "khanyounis", "nameAr": "خانيونس", "nameEn": "Khan Younis" },
+      { "id": "maghazi", "nameAr": "المغازي", "nameEn": "Al-Maghazi" },
+      { "id": "bureij", "nameAr": "البريج", "nameEn": "Al-Bureij" },
+      { "id": "deir_balah", "nameAr": "دير البلح", "nameEn": "Deir al-Balah" },
+      { "id": "zawayda", "nameAr": "الزوايدة", "nameEn": "Al-Zawayda" },
+      { "id": "nuseirat", "nameAr": "النصيرات", "nameEn": "Al-Nuseirat" }
     ]
   }
 }
