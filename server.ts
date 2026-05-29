@@ -420,6 +420,10 @@ app.post('/api/volunteers', verifyAuth, (req, res) => {
   }
 
   // Validate unique national ID
+  const exists = dbCache.volunteers.some(v => v.nationalId === nationalId);
+  if (exists) {
+    return res.status(400).json({ error: 'رقم الهوية هذا مسجل بالفعل لمتطوع آخر' });
+  } 
   
 
   const newVolunteer: Volunteer = {
